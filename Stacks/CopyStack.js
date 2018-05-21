@@ -9,11 +9,22 @@ function Node(val){
 	this.next = null;
 }
 // add val to stack
-function AddToStack(stack, val){
-	var temp = new Node(val);
-	temp.next = stack.top;
-	stack.top = temp;
-	return stack;
+// function AddToStack(stack, val){
+// 	var temp = new Node(val);
+// 	temp.next = stack.top;
+// 	stack.top = temp;
+// 	return stack;
+// }
+
+Stack.prototype.AddToStack = function(val){
+	if(this.top){
+		var temp = new Node(val);
+		temp.next = this.top;
+		this.top = temp;
+	}
+	else{
+		this.top = new Node(val);
+	}
 }
 // remove node from stack
 function removeStack(stack){
@@ -60,16 +71,15 @@ function dupeStack(stack){
 
 // instantiation
 var myStack = new Stack();
-AddToStack(myStack, 3);
-AddToStack(myStack, 5);
-AddToStack(myStack, 7);
-AddToStack(myStack, 9);
+myStack.AddToStack(3);
+myStack.AddToStack(5);
+myStack.AddToStack(7);
+myStack.AddToStack(9);
 console.log(myStack);
 traverse(myStack);
 console.log("-=-=-=-=-=-=-=-");
-var temp = dupeStack(myStack);
-console.log("-=-=-=-=-=-=-=-");
-traverse(temp);
+
+
 
 
 
